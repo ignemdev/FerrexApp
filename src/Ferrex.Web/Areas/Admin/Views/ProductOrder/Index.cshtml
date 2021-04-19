@@ -1,0 +1,59 @@
+﻿@{}
+<section>
+    <div class="d-flex flex-row">
+        <zing-grid caption="Ordenes de productos"
+                   selector
+                   layout-controls
+                   columns-control
+                   pager page-size="10"
+                   page-size-options="4,8,12"
+                   search sort>
+            <zg-data src="/Admin/ProductOrder/GetAll">
+                <zg-param name="recordPath" value="data"></zg-param>
+            </zg-data>
+            <zg-button>
+                <a class="button default large fg-darkGrayBlue" asp-action="Create">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </zg-button>
+            <zg-colgroup>
+                <zg-column index="orderNumber" header="NO"></zg-column>
+                <zg-column index="product.name" header="Producto"></zg-column>
+                @*<zg-column type="custom" index="product.image" header="Imagen" height="100" width="100" sort="disabled">
+                    <div class="img-container thumbnail m-2">
+                        <img src="~/imgs/products/[[record.product.image]]">
+                    </div>
+                </zg-column>*@
+                <zg-column type="number" index="requestedStock" header="Solicitado"></zg-column>
+                <zg-column type="currency" index="total" header="Total"></zg-column>
+                <zg-column type="boolean" index="accepted" header="Aceptada"></zg-column>
+                <zg-column type="boolean" index="entered" header="Ingresada"></zg-column>
+                <zg-column index="comment" header="Comentario"></zg-column>
+                <zg-column index="createdOn" header="Creada" sort-desc="true"></zg-column>
+                <zg-column index="reviewedOn" header="Revisada"></zg-column>
+
+                <zg-column index="id" header="Operaciones" sort="disabled">
+                    <zg-button>
+                        <button class="button success large"
+                                onclick="Metro.infobox.open('#enterinfobox', `<a class='button success' href='/Admin/ProductOrder/Enter/[[record.id]]'>Aceptar</a>`)">
+                            <i class="fas fa-dolly-flatbed"></i>
+                        </button>
+                    </zg-button>
+                </zg-column>
+            </zg-colgroup>
+        </zing-grid>
+    </div>
+
+    <div id="enterinfobox" class="info-box bg-grayWhite" data-role="infobox">
+        <span class="button square closer"></span>
+        <div class="px-5 pt-5 text-center">
+            <h3 class="m-0 fg-darkGrayBlue">¿Desea proceder?</h3>
+            <p class="fg-darkGrayBlue">Al aceptar la cantidad solicitada del producto sera agregada al inventario.</p>
+        </div>
+        <div class="info-box-content text-center"></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+}

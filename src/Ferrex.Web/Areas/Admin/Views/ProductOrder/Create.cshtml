@@ -1,0 +1,46 @@
+﻿@model Ferrex.Core.Models.ProductOrder
+
+@{}
+<section class="container">
+    <div class="grid">
+        <div class="row">
+            <div class="cell">
+                <div data-role="panel"
+                     data-title-caption="Creando orden de producto"
+                     data-cls-title="bg-darkGrayBlue fg-grayWhite h5 m-0 p-4 h-auto text-normal"
+                     data-cls-content="p-4">
+                    <form method="post" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="fg-red"></div>
+                        <div class="row">
+                            <div class="cell-6">
+                                <label asp-for="ProductId"></label>
+                                <select asp-for="ProductId"></select>
+                                <small class="fg-red"><span asp-validation-for="ProductId"></span></small>
+                            </div>
+                            <div class="cell-6">
+                                <label asp-for="RequestedStock"></label>
+                                <input asp-for="RequestedStock" data-role="input" />
+                                <small class="fg-red"><span asp-validation-for="RequestedStock"></span></small>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <button type="submit" class="button secondary large"><i class="fas fa-save"></i></button>
+                            <a class="button alert large" asp-action="Index"><i class="fas fa-times"></i></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="~/js/productOrder.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => initSelect2());
+    </script>
+}
+
+

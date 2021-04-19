@@ -1,0 +1,45 @@
+﻿@{}
+<section>
+    <div class="d-flex flex-row">
+        <zing-grid caption="Ordenes de transporte"
+                   selector
+                   layout-controls
+                   columns-control
+                   pager page-size="10"
+                   page-size-options="4,8,12"
+                   search sort>
+            <zg-data src="/Admin/TransportOrder/GetAll">
+                <zg-param name="recordPath" value="data"></zg-param>
+            </zg-data>
+            <zg-button>
+                <a class="button default large fg-darkGrayBlue" asp-action="Create">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </zg-button>
+            <zg-colgroup>
+                <zg-column index="orderNumber" header="NO"></zg-column>
+                <zg-column index="truckDescription" header="Camion"></zg-column>
+                <zg-column type="custom" index="requestedKilometers" header="Solicitado">
+                    <div data-role="panel">
+                        [[record.requestedKilometers]] KM
+                    </div>
+                </zg-column>
+                <zg-column type="custom" index="requestedDay" header="Dia">
+                    <div data-role="panel">
+                        [[record.requestedDay]]
+                    </div>
+                </zg-column>
+                <zg-column type="currency" index="total" header="Total"></zg-column>
+                <zg-column type="boolean" index="accepted" header="Aceptada"></zg-column>
+                <zg-column index="comment" header="Comentario"></zg-column>
+                <zg-column index="createdOn" header="Creada" sort-desc="true"></zg-column>
+                <zg-column index="reviewedOn" header="Revisada"></zg-column>
+            </zg-colgroup>
+        </zing-grid>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+}
+

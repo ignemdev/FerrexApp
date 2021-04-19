@@ -1,0 +1,72 @@
+﻿@{}
+@Html.ValidationSummary(false, "", new { @class = "fg-red" })
+<section>
+    <div class="d-flex flex-row">
+        <zing-grid caption="Productos"
+                   selector
+                   layout-controls
+                   columns-control
+                   pager page-size="10"
+                   page-size-options="4,8,12"
+                   layout="card"
+                   search sort>
+            <zg-data src="/Admin/Product/GetAll">
+                <zg-param name="recordPath" value="data"></zg-param>
+            </zg-data>
+            <zg-button>
+                <a class="button default large fg-darkGrayBlue" asp-action="Upsert">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </zg-button>
+            <zg-colgroup>
+                @*<zg-column type="custom" index="image" header="Imagen" height="250" width="250" sort="disabled">
+                    <div class="img-container thumbnail m-2">
+                        <img src="~/imgs/products/[[record.image]]">
+                    </div>
+                </zg-column>*@
+                <zg-column index="name" header="Nombre"></zg-column>
+                <zg-column index="description" header="Descripcion"></zg-column>
+                <zg-column type="currency" index="price" header="Precio"></zg-column>
+                <zg-column type="custom" index="stock">
+                    <div class="h5">[[record.stock]]</div>
+                </zg-column>
+                <zg-column index="category.name" header="Categoria">
+                    <div class="card">
+                        <div class="card-header">
+                            [[record.category.name]]
+                        </div>
+                        <div class="card-content p-2">
+                            [[record.category.description]]
+                        </div>
+                    </div>
+                </zg-column>
+                <zg-column index="id" header="Operaciones" sort="disabled">
+                    <zg-button>
+                        <a class="button secondary large" href="/Admin/Product/Upsert/[[record.id]]">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </zg-button>
+                    <zg-button>
+                        <button class="button alert large"
+                                onclick="Metro.infobox.open('#deleteinfobox', `<a class='button alert' href='/Admin/Product/Delete/[[record.id]]'>Aceptar</a>`)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </zg-button>
+                </zg-column>
+            </zg-colgroup>
+        </zing-grid>
+    </div>
+
+    <div id="deleteinfobox" class="info-box bg-grayWhite" data-role="infobox">
+        <span class="button square closer"></span>
+        <div class="px-5 pt-5 text-center">
+            <h3 class="m-0 fg-darkGrayBlue">¿Desea proceder?</h3>
+            <p class="fg-darkGrayBlue">Al aceptar el producto sera eliminado permanentemente.</p>
+        </div>
+        <div class="info-box-content text-center"></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+}

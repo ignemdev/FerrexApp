@@ -1,0 +1,77 @@
+﻿@model Ferrex.Core.Models.Product
+
+@{
+}
+
+<section class="container">
+    <div class="grid">
+        <div class="row">
+            <div class="cell">
+                <div data-role="panel"
+                     data-title-caption="Editando/creando producto"
+                     data-cls-title="bg-darkGrayBlue fg-grayWhite h5 m-0 p-4 h-auto text-normal"
+                     data-cls-content="p-4">
+                    <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="fg-red"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="row">
+                            <div class="cell-6">
+                                <label asp-for="Name"></label>
+                                <input asp-for="Name" data-role="input" />
+                                <small class="fg-red"><span asp-validation-for="Name"></span></small>
+                            </div>
+                            <div class="cell-6">
+                                <label asp-for="Price"></label>
+                                <input asp-for="Price" data-role="input" />
+                                <small class="fg-red"><span asp-validation-for="Price"></span></small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell">
+                                <label asp-for="CategoryId"></label>
+                                <select asp-for="CategoryId"></select>
+                                <small class="fg-red"><span asp-validation-for="CategoryId"></span></small>
+                            </div>
+                           @*<div class="cell-6">
+                                <label for="image">Imagen:</label>
+                                <input type="file" id="image" name="image"
+                                       data-role="file"
+                                       data-button-title="<i class='fas fa-image'></i>"
+                                       data-cls-button="bg-darkGrayBlue fg-grayWhite"
+                                       accept="image/png, image/jpeg"
+                                       onchange="previewImage(this.files)">
+                            </div>*@
+                        </div>
+                        <div class="row">
+                            <div class="cell">
+                                <label asp-for="Description"></label>
+                                <textarea asp-for="Description" data-role="textarea" data-auto-size="true" data-max-height="400"></textarea>
+                                <small class="fg-red"><span asp-validation-for="Description"></span></small>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <button type="submit" class="button secondary large"><i class="fas fa-save"></i></button>
+                            <a class="button alert large" asp-action="Index"><i class="fas fa-times"></i></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @*<div class="cell-4">
+                <div class="img-container thumbnail">
+                    <img id="imagepreview" src="~/imgs/products/@Model.Image">
+                </div>
+            </div>*@
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="~/js/product.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => initSelect2('@Model.CategoryId'));
+    </script>
+}
+
+

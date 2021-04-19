@@ -1,0 +1,81 @@
+﻿@model Ferrex.Core.Models.Category
+@{}
+
+<section>
+    <div class="d-flex flex-row">
+        <zing-grid caption="Categorias"
+                   layout-controls
+                   columns-control
+                   pager page-size="4"
+                   page-size-options="2,4,8"
+                   search sort>
+            <zg-data src="/Admin/Category/GetAll">
+                <zg-param name="recordPath" value="data"></zg-param>
+            </zg-data>
+            <zg-button>
+                <button class="button default large fg-darkGrayBlue" onclick="Metro.dialog.open('#adddialog')">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </zg-button>
+            <zg-colgroup>
+                <zg-column index="name" header="Nombre"></zg-column>
+                <zg-column index="description" header="Descripcion"></zg-column>
+                <zg-column index="id" header="Operaciones" sort="disabled">
+                    <zg-button>
+                        <button class="button secondary large"
+                                onclick="openEditDialog('[[record.id]]','[[record.name]]','[[record.description]]')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </zg-button>
+                    <zg-button>
+                        <button class="button alert large"
+                                onclick="Metro.infobox.open('#deleteinfobox', `<a class='button alert' href='/Admin/Category/Delete/[[record.id]]'>Aceptar</a>`)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </zg-button>
+                </zg-column>
+            </zg-colgroup>
+        </zing-grid>
+    </div>
+
+    <div id="deleteinfobox" class="info-box bg-grayWhite" data-role="infobox">
+        <span class="button square closer"></span>
+        <div class="px-5 pt-5 text-center">
+            <h3 class="m-0 fg-darkGrayBlue">¿Desea proceder?</h3>
+            <p class="fg-darkGrayBlue">Al aceptar la categoria sera eliminada permanentemente.</p>
+        </div>
+        <div class="info-box-content text-center"></div>
+    </div>
+</section>
+
+<section>
+    <div class="dialog" data-role="dialog" id="adddialog"
+         data-close-button="true"
+         data-on-close="emptyDialogInputs()"
+         data-default-action="false">
+        <div class="dialog-title">Editando/creando categoria</div>
+        <div class="dialog-content">
+            <form method="post" asp-action="Upsert">
+                <div asp-validation-summary="ModelOnly" class="fg-red"></div>
+                <input type="hidden" asp-for="Id" value="0" />
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" data-role="input" />
+                    <small class="fg-red"><span asp-validation-for="Name"></span></small>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" data-role="textarea" data-auto-size="true" data-max-height="200"></textarea>
+                    <small class="fg-red"><span asp-validation-for="Description"></span></small>
+                </div>
+                <button type="submit" class="button secondary m-0 mt-5">Guardar</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="~/js/category.js"></script>
+}

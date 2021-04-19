@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Web management app for products and orders.">
+    <meta name="keywords" content="web, app, products, orders, ,categories, hardware, store">
+    <meta name="author" content="Ignacio Morel Pujols">
+    <title>Ferrex</title>
+    <!--Favicons-->
+    <link rel="apple-touch-icon" sizes="76x76" href="~/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon/favicon-16x16.png">
+    <link rel="manifest" href="~/favicon/site.webmanifest">
+    <link rel="mask-icon" href="~/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#41545e">
+    <meta name="theme-color" content="#41545e">
+    <!--Metro 4-->
+    <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
+    <!--Fontawesome-->
+    <script src="https://kit.fontawesome.com/2f5ce3c3e5.js" crossorigin="anonymous"></script>
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+    <!--Select2-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!--Custom-->
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="bg-grayWhite">
+    <header class="sidebar pos-absolute z-2"
+            data-role="sidebar"
+            data-toggle="#sidebar-toggle-3"
+            id="sb3"
+            data-shift=".shifted-content">
+        <div class="sidebar-header bg-grayBlue h-auto">
+            <div class="text-center">
+                <i class="fas fa-tools display4 fg-lightGrayBlue"></i>
+            </div>
+        </div>
+        <ul class="sidebar-menu bg-grayWhite">
+            <li>
+                <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="Product" asp-action="Index">
+                    <i class="fas fa-toolbox icon"></i>Productos
+                </a>
+            </li>
+            <li>
+                <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="Category" asp-action="Index">
+                    <i class="fas fa-tags icon"></i>Categorias
+                </a>
+            </li>
+            <li>
+                <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="TransportOrder" asp-action="Index">
+                    <i class="fas fa-truck icon"></i>Solicitar transporte
+                </a>
+            </li>
+            <li>
+                <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="ProductOrder" asp-action="Index">
+                    <i class="fas fa-shopping-cart icon"></i>Solicitar producto
+                </a>
+            </li>
+        </ul>
+    </header>
+
+    <div class="shifted-content h-100 p-ab">
+        <div class="app-bar pos-absolute bg-darkGrayBlue z-1" data-role="appbar">
+            <button class="app-bar-item c-pointer" id="sidebar-toggle-3">
+                <span class="mif-menu fg-white"></span>
+            </button>
+        </div>
+        <main role="main" class="h-100 p-4">
+            @RenderBody()
+        </main>
+        <footer class="text-muted">
+            <div class="p-4">&copy; @DateTime.Now.Year Ferrex</div>
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js"></script>
+    @*<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

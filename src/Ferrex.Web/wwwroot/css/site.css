@@ -1,0 +1,33 @@
+﻿* {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.h-auto{
+    height: auto;
+}
+
+zing-grid {
+    --zg-caption-color: #f5f5f5;
+    --zg-caption-icon-color: #f5f5f5;
+    --zg-caption-background: #41545e;
+    --zg-control-bar-background: #8aa2ae;
+    --zg-cell-color: #41545e;
+    --theme-color-primary: #41545e;
+    --zg-head-cell-background: #f5f5f5;
+    --zg-head-cell-color: #41545e;
+    --zg-cell-background_hover: #f5f5f5;
+    --zg-button-box-shadow_custom: none;
+    --zg-button-border_custom: none;
+    --zg-button-background_custom_active: none;
+    --zg-button-background_custom_hover: none;
+    --zg-button-box-shadow_custom_active: none;
+    --zg-button-box-shadow_custom_hover: none;
+    --zg-button-border_custom_active: none;
+    --zg-button-border_custom_hover: none;
+    --zg-pager-background: #f5f5f5;
+    --zg-pager-color: #41545e;
+}
