@@ -1,6 +1,7 @@
 ﻿@model Ferrex.Core.Models.Product
 
-@{
+@{ 
+    ViewBag.Title = (Model.Id == 0) ? "Creando producto" : $"Editando {Model.Name}"; 
 }
 
 <section class="container">
@@ -32,15 +33,6 @@
                                 <select asp-for="CategoryId"></select>
                                 <small class="fg-red"><span asp-validation-for="CategoryId"></span></small>
                             </div>
-                           @*<div class="cell-6">
-                                <label for="image">Imagen:</label>
-                                <input type="file" id="image" name="image"
-                                       data-role="file"
-                                       data-button-title="<i class='fas fa-image'></i>"
-                                       data-cls-button="bg-darkGrayBlue fg-grayWhite"
-                                       accept="image/png, image/jpeg"
-                                       onchange="previewImage(this.files)">
-                            </div>*@
                         </div>
                         <div class="row">
                             <div class="cell">
@@ -56,11 +48,6 @@
                     </form>
                 </div>
             </div>
-            @*<div class="cell-4">
-                <div class="img-container thumbnail">
-                    <img id="imagepreview" src="~/imgs/products/@Model.Image">
-                </div>
-            </div>*@
         </div>
     </div>
 </section>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Ferrex.Core.Models
@@ -21,11 +22,11 @@ namespace Ferrex.Core.Models
         public double Price { get; set; }
         [Range(0, 100000)]
         public int Stock { get; set; } = 0;
-        public string Image { get; set; }
         [Required]
         [Display(Name = "Categoria")]
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

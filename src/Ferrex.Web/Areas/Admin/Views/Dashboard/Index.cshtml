@@ -1,0 +1,110 @@
+﻿@model Ferrex.Core.ViewModels.DashboardViewModel;
+
+@{
+    ViewData["Title"] = "Tablero";
+}
+
+<section class="container mb-10">
+    <div class="row flex-justify-center flex-align-stretch mt-10">
+        <div class="cell-3">
+            <div class="more-info-box bg-grayBlue fg-grayWhite">
+                <div class="content">
+                    <h2 class="text-bold mb-0">@Model.RegisteredProducts</h2>
+                    <div>Productos registrados</div>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <a class="more bg-darkGrayBlue" asp-area="Admin" asp-controller="Product" asp-action="Index">Mantenimiento de productos<span class="mif-arrow-right"></span></a>
+            </div>
+        </div>
+        <div class="cell-3">
+            <div class="more-info-box bg-grayBlue fg-grayWhite">
+                <div class="content">
+                    <h2 class="text-bold mb-0">@Model.RegisteredCategories</h2>
+                    <div>Categorias registradas</div>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <a class="more bg-darkGrayBlue" asp-area="Admin" asp-controller="Category" asp-action="Index">Mantenimiento de categorias<span class="mif-arrow-right"></span></a>
+            </div>
+        </div>
+        <div class="cell-3">
+            <div class="more-info-box bg-grayBlue fg-grayWhite">
+                <div class="content">
+                    <h2 class="text-bold mb-0">@Model.WithoutStockProducts</h2>
+                    <div>Productos fuera de stock</div>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <a class="more bg-darkGrayBlue" asp-area="Admin" asp-controller="Product" asp-action="Index">Mantenimiento de productos<span class="mif-arrow-right"></span></a>
+            </div>
+        </div>
+        <div class="cell-3">
+            <div class="more-info-box bg-grayBlue fg-grayWhite">
+                <div class="content">
+                    <h2 class="text-bold mb-0">@Model.AcumulatedStock</h2>
+                    <div>Stock acumulado de los productos</div>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <a class="more bg-darkGrayBlue" asp-area="Admin" asp-controller="Product" asp-action="Index">Mantenimiento de productos<span class="mif-arrow-right"></span></a>
+            </div>
+        </div>
+        <div class="row mt-5 w-100">
+            <div class="cell">
+                   <div class="text-upper text-lead bg-darkGrayBlue fg-grayWhite p-5">
+                    Productos registrados hoy
+                   </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                            <th>Categoria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.TodayProducts)
+                        {
+                        <tr>
+                            <td>@product.Name</td>
+                            <td>@product.Price</td>
+                            <td>@product.Stock</td>
+                            <td>@product.Category.Name</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row mt-5 w-100">
+            <div class="cell">
+                <div class="text-upper text-lead bg-darkGrayBlue fg-grayWhite p-5">
+                    Categorias registradas hoy
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Descripcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var category in Model.TodayCategories)
+                        {
+                            <tr>
+                                <td>@category.Name</td>
+                                <td>@category.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</section>

@@ -9,10 +9,8 @@ namespace Ferrex.Data.Repositories
     {
         private readonly FerrexContext _db;
 
-        public CategoryRepository(FerrexContext db) : base(db)
-        {
-            _db = db;
-        }
+        public CategoryRepository(FerrexContext db) : base(db) => _db = db;
+
         public async Task UpdateAsync(Category category)
         {
             var dbCategory = await _db.Categories.FirstOrDefaultAsync(c => c.Id == category.Id);

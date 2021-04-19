@@ -1,8 +1,12 @@
-﻿@{}
-@Html.ValidationSummary(false, "", new { @class = "fg-red" })
+﻿@model Ferrex.Core.Models.Product
+
+@{ 
+    ViewBag.Title = "Productos"; 
+}
+
 <section>
     <div class="d-flex flex-row">
-        <zing-grid caption="Productos"
+        <zing-grid caption="Listado de productos"
                    selector
                    layout-controls
                    columns-control
@@ -19,11 +23,6 @@
                 </a>
             </zg-button>
             <zg-colgroup>
-                @*<zg-column type="custom" index="image" header="Imagen" height="250" width="250" sort="disabled">
-                    <div class="img-container thumbnail m-2">
-                        <img src="~/imgs/products/[[record.image]]">
-                    </div>
-                </zg-column>*@
                 <zg-column index="name" header="Nombre"></zg-column>
                 <zg-column index="description" header="Descripcion"></zg-column>
                 <zg-column type="currency" index="price" header="Precio"></zg-column>
@@ -40,6 +39,7 @@
                         </div>
                     </div>
                 </zg-column>
+                <zg-column index="createdOn" header="Registro"></zg-column>
                 <zg-column index="id" header="Operaciones" sort="disabled">
                     <zg-button>
                         <a class="button secondary large" href="/Admin/Product/Upsert/[[record.id]]">
@@ -50,6 +50,12 @@
                         <button class="button alert large"
                                 onclick="Metro.infobox.open('#deleteinfobox', `<a class='button alert' href='/Admin/Product/Delete/[[record.id]]'>Aceptar</a>`)">
                             <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </zg-button>
+                    <zg-button>
+                        <button class="button bg-normalGray fg-grayBlue large"
+                                onclick="openStockDialog('[[record.id]]')">
+                            <i class="fas fa-dolly-flatbed"></i>
                         </button>
                     </zg-button>
                 </zg-column>
@@ -67,6 +73,28 @@
     </div>
 </section>
 
+<section>
+    <div class="dialog" data-role="dialog" id="stockdialog"
+         data-close-button="true"
+         data-on-close="emptyDialogInputs()"
+         data-default-action="false">
+        <div class="dialog-title">Agregando stock</div>
+        <div class="dialog-content">
+            <form method="post" asp-action="AddStock">
+                <div asp-validation-summary="ModelOnly" class="fg-red"></div>
+                <input type="hidden" asp-for="Id" value="0" />
+                <div class="form-group">
+                    <label asp-for="Stock"></label>
+                    <input asp-for="Stock" data-role="input" />
+                    <small class="fg-red"><span asp-validation-for="Stock"></span></small>
+                </div>
+                <button type="submit" class="button secondary m-0 mt-5">Añadir</button>
+            </form>
+        </div>
+    </div>
+</section>
+
 @section Scripts {
     <script src="https://cdn.zinggrid.com/zinggrid.min.js" defer></script>
+    <script src="~/js/product.js"></script>
 }

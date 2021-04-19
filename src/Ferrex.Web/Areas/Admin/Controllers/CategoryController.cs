@@ -10,10 +10,7 @@ namespace Ferrex.Web.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        public CategoryController(IUnitOfWork unitOfWork) =>_unitOfWork = unitOfWork;
 
         public IActionResult Index() => View();
 

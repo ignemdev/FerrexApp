@@ -1,6 +1,5 @@
 using Ferrex.Core;
 using Ferrex.Data;
-using Ferrex.Services.Handlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -37,7 +36,6 @@ namespace Ferrex.Web
                 .AddEntityFrameworkStores<FerrexContext>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<WebImageHandler>();
 
             services.AddControllersWithViews();
         }
@@ -52,7 +50,7 @@ namespace Ferrex.Web
             }
             else
             {
-                app.UseExceptionHandler("/Customer/Home/Error");
+                app.UseExceptionHandler("/Admin/Dashboard/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -72,7 +70,7 @@ namespace Ferrex.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{Area=Admin}/{controller=Product}/{action=Index}/{id?}");
+                    pattern: "{Area=Admin}/{controller=Dashboard}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

@@ -1,4 +1,6 @@
-﻿async function initSelect2(currentValue) {
+﻿let idHidden = document.querySelector('#Id');
+
+async function initSelect2(currentValue) {
     const response = await fetch('/Admin/Category/GetAll');
     const categories = await response.json();
     const data = categories.data.map((c) => Object.create({ id: c.id, text: c.name }));
@@ -9,10 +11,11 @@
     }).select2('val', currentValue);
 }
 
-function previewImage(files) {
-    if (files && files[0]) {
-        let reader = new FileReader();
-        reader.onload = e => document.querySelector('#imagepreview').setAttribute('src', e.target.result);
-        reader.readAsDataURL(files[0]);
-    }
+function openStockDialog(id) {
+    Metro.dialog.open('#stockdialog');
+    idHidden.value = id;
+}
+
+function emptyDialogInputs() {
+    idHidden.value = 0;
 }

@@ -8,8 +8,6 @@ namespace Ferrex.Core
     {
         ICategoryRepository Category { get; }
         IProductRepository Product { get; }
-        IProductOrderRepository ProductOrder { get; }
-        ITransportOrderRepository TransportOrder { get; }
         Task SaveAsync();
     }
 }

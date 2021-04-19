@@ -1,9 +1,12 @@
 ﻿@model Ferrex.Core.Models.Category
-@{}
+
+@{
+    ViewBag.Title = "Categorias";
+}
 
 <section>
     <div class="d-flex flex-row">
-        <zing-grid caption="Categorias"
+        <zing-grid caption="Listado de categorias"
                    layout-controls
                    columns-control
                    pager page-size="4"
@@ -20,6 +23,7 @@
             <zg-colgroup>
                 <zg-column index="name" header="Nombre"></zg-column>
                 <zg-column index="description" header="Descripcion"></zg-column>
+                <zg-column index="createdOn" header="Registro"></zg-column>
                 <zg-column index="id" header="Operaciones" sort="disabled">
                     <zg-button>
                         <button class="button secondary large"
@@ -53,7 +57,7 @@
          data-close-button="true"
          data-on-close="emptyDialogInputs()"
          data-default-action="false">
-        <div class="dialog-title">Editando/creando categoria</div>
+        <div class="dialog-title">Creand/Editando categoria</div>
         <div class="dialog-content">
             <form method="post" asp-action="Upsert">
                 <div asp-validation-summary="ModelOnly" class="fg-red"></div>

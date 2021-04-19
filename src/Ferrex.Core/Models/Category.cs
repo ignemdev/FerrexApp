@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ferrex.Core.Models
 {
@@ -14,5 +15,6 @@ namespace Ferrex.Core.Models
         [MaxLength(200)]
         [Display(Name = "Descripcion")]
         public string Description { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

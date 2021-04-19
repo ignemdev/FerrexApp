@@ -11,8 +11,6 @@ namespace Ferrex.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductOrder> ProductOrders { get; set; }
-        public DbSet<TransportOrder> TransportOrders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -22,15 +20,11 @@ namespace Ferrex.Data
                             .IsRequired()
                             .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Entity<ProductOrder>()
+            builder.Entity<Category>()
                 .Property(p => p.CreatedOn).ValueGeneratedOnAdd();
-            builder.Entity<ProductOrder>()
-                .Property(p => p.ReviewedOn).HasDefaultValue(new DateTime());
 
-            builder.Entity<TransportOrder>()
+            builder.Entity<Product>()
                 .Property(p => p.CreatedOn).ValueGeneratedOnAdd();
-            builder.Entity<TransportOrder>()
-                .Property(p => p.ReviewedOn).HasDefaultValue(new DateTime());
 
             base.OnModelCreating(builder);
         }

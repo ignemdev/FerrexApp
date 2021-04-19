@@ -6,5 +6,6 @@ namespace Ferrex.Core.Repositories
     public interface IProductRepository : IRepository<Product>
     {
         Task UpdateAsync(Product product);
+        Task AddStockAsync(Product product);
     }
 }

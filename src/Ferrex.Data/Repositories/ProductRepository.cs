@@ -9,10 +9,8 @@ namespace Ferrex.Data.Repositories
     {
         private readonly FerrexContext _db;
 
-        public ProductRepository(FerrexContext db) : base(db)
-        {
-            _db = db;
-        }
+        public ProductRepository(FerrexContext db) : base(db) => _db = db;
+
         public async Task UpdateAsync(Product product)
         {
             var dbProduct = await _db.Products.FirstOrDefaultAsync(p => p.Id == product.Id);
@@ -22,10 +20,16 @@ namespace Ferrex.Data.Repositories
                 dbProduct.Name = product.Name;
                 dbProduct.Description = product.Description;
                 dbProduct.Price = product.Price;
-                dbProduct.Image = product.Image;
                 dbProduct.CategoryId = product.CategoryId;
             }
 
+        }
+
+        public async Task AddStockAsync(Product product)
+        {
+            var dbProduct = await _db.Products.FirstOrDefaultAsync(p => p.Id == product.Id);
+
+            if (dbProduct is not null) dbProduct.Stock += product.Stock;
         }
     }
 }

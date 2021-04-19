@@ -7,7 +7,7 @@
     <meta name="description" content="Web management app for products and orders.">
     <meta name="keywords" content="web, app, products, orders, ,categories, hardware, store">
     <meta name="author" content="Ignacio Morel Pujols">
-    <title>Ferrex</title>
+    <title>@ViewBag.Title - FerrexApp</title>
     <!--Favicons-->
     <link rel="apple-touch-icon" sizes="76x76" href="~/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="~/favicon/favicon-32x32.png">
@@ -41,6 +41,11 @@
         </div>
         <ul class="sidebar-menu bg-grayWhite">
             <li>
+                <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                    <i class="fas fa-chart-line icon"></i>Tablero
+                </a>
+            </li>
+            <li>
                 <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="Product" asp-action="Index">
                     <i class="fas fa-toolbox icon"></i>Productos
                 </a>
@@ -48,16 +53,6 @@
             <li>
                 <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="Category" asp-action="Index">
                     <i class="fas fa-tags icon"></i>Categorias
-                </a>
-            </li>
-            <li>
-                <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="TransportOrder" asp-action="Index">
-                    <i class="fas fa-truck icon"></i>Solicitar transporte
-                </a>
-            </li>
-            <li>
-                <a class="fg-darkGrayBlue" asp-area="Admin" asp-controller="ProductOrder" asp-action="Index">
-                    <i class="fas fa-shopping-cart icon"></i>Solicitar producto
                 </a>
             </li>
         </ul>
@@ -73,7 +68,7 @@
             @RenderBody()
         </main>
         <footer class="text-muted">
-            <div class="p-4">&copy; @DateTime.Now.Year Ferrex</div>
+            <div class="p-4 text-center">&copy; @DateTime.Now.Year Ignacio Morel Pujols</div>
         </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
